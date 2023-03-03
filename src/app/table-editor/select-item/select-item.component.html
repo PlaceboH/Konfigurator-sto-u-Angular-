@@ -1,0 +1,35 @@
+<div *ngIf="data">
+  <div class="">
+    <h3>Pleas choose {{data.type}}</h3>
+    <mat-form-field appearance="fill">
+      <mat-label>Select Mode</mat-label>
+      <mat-select [formControl]="selectItemControl">
+        <div *ngFor="let item of data.items">
+          <mat-option [value]="item">{{item}}</mat-option>
+        </div>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <button
+        (click)="closeDialog()"
+        class="w-50"
+        mat-button
+        mat-dialog-close
+        disableRipple
+    >
+        Close
+    </button>
+    <button
+        color="primary"
+        class="w-50"
+        [disabled]="selectItemControl.invalid"
+        (click)="submit()"
+        mat-button
+        disableRipple
+    >
+        Submit
+    </button>
+</div>
+</div>

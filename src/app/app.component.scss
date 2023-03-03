@@ -1,0 +1,19 @@
+.menu {
+  margin: 5rem;
+  padding-top: 2rem;
+}
+
+.table {
+  position: absolute;
+  left: 35%;
+  top: -30%;
+  width: 1650px;
+
+  &__rotate {
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      transform: rotate(90deg);
+  }
+}

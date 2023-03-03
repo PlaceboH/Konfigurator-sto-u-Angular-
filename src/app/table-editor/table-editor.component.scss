@@ -1,0 +1,26 @@
+.dishes {
+  position: absolute;
+  display: inline-block;
+  top: 48%;
+  right: 25%;
+  width: 100%;
+}
+
+.plates {
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  top: 25%;
+  right: 23%;
+
+  &__down-side {
+    margin-bottom: 650px;
+  }
+}
+
+.addItem {
+  cursor: pointer;
+  position: relative;
+}
+
+

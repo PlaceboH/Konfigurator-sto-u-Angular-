@@ -1,9 +1,25 @@
-import { TestBed } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { ItemType } from './core/data/dinner-table-model';
+import { TableService } from './core/data/table.service';
+import { Store } from './core/store/store';
+import { TableActions } from './core/store/table-actions';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let el: DebugElement;
+  let tableService: TableService;
+  let store: Store;
+
+
   beforeEach(async () => {
+
+    const tableServiceSpy = jasmine.createSpyObj('TableService', ['updateDataToJson']);
+    const tableActionsSpy = jasmine.createSpyObj('TableActions', ['removeLastItem']);
+
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
@@ -11,25 +27,28 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
-    }).compileComponents();
+      providers: [
+        {provide: TableService, useValue: tableServiceSpy},
+        {provide: TableActions, useValue: tableActionsSpy},
+        {provide: Store},
+      ]
+    }).compileComponents()
+      .then(() => {
+        fixture = TestBed.createComponent(AppComponent);
+        component = fixture.componentInstance;
+        el = fixture.debugElement;
+        tableService = TestBed.get(TableService);
+        store = TestBed.get(Store);
+    });
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'dinner-table-app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('dinner-table-app');
-  });
+  it('should not turn back', () => {
+    component.turnBack();
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('dinner-table-app app is running!');
+    expect(console.log);
   });
 });

@@ -1,0 +1,15 @@
+
+<div *ngIf="data">
+  <div [ngClass]=" data.modeType === 'plates' ? 'plates' : 'dishes'">
+    <div class="row justify-content-center align-items-center g-2">
+      <div class="col-1" *ngFor="let item of data?.position; let i = index">
+        <div (click)="openSelectDialog(i)" class="addItem plates__down-side" *ngIf="item === '1'; else noItem">
+          <img src="assets/img/addButton.svg" alt="add item icon" width="70">
+        </div>
+        <ng-template #noItem>
+          <div class="col-1"></div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
